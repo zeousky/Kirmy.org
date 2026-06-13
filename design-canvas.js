@@ -330,6 +330,7 @@ function DCViewport({
     };
 
     const onHostMsg = e => {
+      if (e.origin !== window.location.origin) return;
       const d = e.data;
       if (d && d.type === '__dc_set_zoom' && typeof d.scale === 'number') {
         const r = vp.getBoundingClientRect();

@@ -145,6 +145,7 @@ function TweaksPanel({
   React.useEffect(() => {
     if (!hasDeckStage || railEnabled) return undefined;
     const onMsg = e => {
+      if (e.origin !== window.location.origin) return;
       if (e.data && e.data.type === '__omelette_rail_enabled') setRailEnabled(true);
     };
     window.addEventListener('message', onMsg);
@@ -196,6 +197,7 @@ function TweaksPanel({
   }, [open, clampToViewport]);
   React.useEffect(() => {
     const onMsg = e => {
+      if (e.origin !== window.location.origin) return;
       const t = e?.data?.type;
       if (t === '__activate_edit_mode') setOpen(true);else if (t === '__deactivate_edit_mode') setOpen(false);
     };
