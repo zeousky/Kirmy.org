@@ -1,0 +1,5 @@
+Contact: mailto:ckazros@kozzyx.org
+Contact: https://discord.gg/fPG29xv7EA
+Expires: 2027-05-18T20:00:00Z
+Preferred-Languages: en
+Canonical: https://kirmy.org/.well-known/security.txt

@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+
+# Local env / secrets
+.env
+*.pem
+*.key
+
+# AI assistant config — kept local
+CLAUDE.md
+.claude/
