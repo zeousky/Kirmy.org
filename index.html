@@ -1,140 +1,146 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://accounts.google.com/gsi/client https://plausible.io https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://*; connect-src 'self' https://api.kozzyx.app https://kozzyx-api.bazsi9849.workers.dev https://accounts.google.com https://plausible.io https://cloudflareinsights.com; frame-src 'self' https://accounts.google.com https://challenges.cloudflare.com; base-uri 'self';">
-    <title>Kirmy Browser - privacy-first browser concept</title>
-    <meta name="description" content="Kirmy is a privacy-first browser concept: block trackers, shield your fingerprint, route tabs through Tor, and search without being followed.">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><rect width='40' height='40' rx='9' fill='%237dd9b5'/><path d='M14 11 V29 M14 20 L26 11 M14 20 L26 29' stroke='%230b0b0d' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>kirmy.org</title>
+    <meta
+      name="description"
+      content="kirmy.org — small essays about bicycles, bread, clouds, and other things that caught my eye. plain html, no scripts, no tracking."
+    />
     <style>
-      :root{
-        --bg:#0c100e;--surface:#141a17;--line:#222b27;--line-2:#2d3a34;
-        --text:#e6ece9;--muted:#94a39c;--faint:#6b7a73;
-        --accent:#34c98e;--accent-2:#6fe3b6;--signal:#46c79a;
-        --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-        --mono:ui-monospace,"SF Mono","Cascadia Code",Menlo,Consolas,monospace;
-        --radius:10px;
+      * {
+        box-sizing: border-box;
       }
-      *{box-sizing:border-box}
-      body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
-      #page{max-width:860px;margin:0 auto;padding:0 24px 80px}
-      .site-header{display:flex;align-items:center;gap:12px;padding:18px 0;border-bottom:1px solid var(--line)}
-      .brand{display:inline-flex;align-items:center;gap:11px;text-decoration:none;color:var(--text);font-weight:600;font-size:18px}
-      .brand .mark{width:30px;height:30px;display:grid;place-items:center;border-radius:8px;background:var(--accent);flex:none}
-      .brand .mark svg{width:18px;height:18px;display:block}
-      .brand .tag{color:var(--muted);font-weight:400;font-size:14px;margin-left:2px}
-      a{color:var(--accent-2);text-decoration:none}
-      a:hover{text-decoration:underline;text-underline-offset:2px}
-      a:visited{color:var(--accent-2)}
-      .hero{padding:52px 0 8px;max-width:640px}
-      .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin:0 0 16px}
-      .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--signal)}
-      h1{font-weight:650;letter-spacing:-.3px}
-      .hero h1{font-size:clamp(32px,5.5vw,46px);line-height:1.1;margin:0 0 16px}
-      .hero h1 .accent{color:var(--accent-2)}
-      .hero p{font-size:18px;color:var(--muted);max-width:56ch}
-      h2{font-size:25px;font-weight:650;letter-spacing:-.3px;margin:48px 0 4px}
-      p{margin:12px 0}
-      ul{margin:12px 0;padding-left:22px}li{margin:6px 0}
-      em{color:var(--accent-2);font-style:italic}strong,b{color:var(--text);font-weight:650}
-      code{font-family:var(--mono);font-size:.88em;background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:1px 5px}
-      .note{border:1px solid var(--line);border-left:2px solid var(--accent);background:var(--surface);border-radius:0 8px 8px 0;padding:14px 18px;margin:22px 0;color:var(--muted)}
-      .note strong{color:var(--text)}
-      .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin:20px 0}
-      .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
-      .card h3{margin:0 0 6px;font-size:16px;font-weight:650}
-      .card p{color:var(--muted);margin:0;font-size:14.5px}
-      .card .ic{width:32px;height:32px;display:grid;place-items:center;border-radius:8px;border:1px solid var(--line-2);color:var(--muted);margin-bottom:12px}
-      .card .ic svg{width:18px;height:18px}
-      table{border-collapse:collapse;width:100%;margin:20px 0;font-size:14.5px}
-      th,td{padding:10px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
-      th{color:var(--faint);font-weight:600;font-size:13px}
-      .footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--line);font-size:13.5px;color:var(--faint);text-align:center}
-      @media(max-width:720px){#page{padding:0 16px 64px}.hero{padding:36px 0 8px}}
+      body {
+        max-width: 760px;
+        margin: 48px auto;
+        padding: 0 20px 60px;
+        background: #fff;
+        color: #111;
+        font:
+          17px/1.65 Georgia,
+          "Times New Roman",
+          serif;
+      }
+      header {
+        margin-bottom: 34px;
+      }
+      h1 {
+        font-size: 2.25rem;
+        line-height: 1.08;
+        margin: 0 0 12px;
+      }
+      h2 {
+        margin-top: 32px;
+      }
+      .site-name {
+        font:
+          bold 15px/1.2 Arial,
+          sans-serif;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .meta {
+        color: #666;
+        font:
+          13px/1.5 Arial,
+          sans-serif;
+        overflow-wrap: anywhere;
+      }
+      nav {
+        margin: 24px 0;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+      }
+      nav a {
+        margin-right: 14px;
+      }
+      a {
+        color: #0645ad;
+      }
+      a:visited {
+        color: #551a8b;
+      }
+      article {
+        border-top: 1px solid #ddd;
+        padding-top: 24px;
+      }
+      ul,
+      ol {
+        padding-left: 22px;
+      }
+      li {
+        margin: 6px 0;
+      }
+      ul.directory {
+        padding-left: 22px;
+      }
+      ul.directory li {
+        margin: 8px 0;
+      }
+      footer {
+        margin-top: 42px;
+        padding-top: 18px;
+        border-top: 1px solid #ddd;
+        color: #777;
+        font:
+          12px/1.5 Arial,
+          sans-serif;
+      }
     </style>
-</head>
-<body>
-    <div id="page">
-
-        <header class="site-header">
-            <a class="brand" href="index.html">
-                <span class="mark">
-                    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path d="M8 1.2 L13.2 3.2 V8 C13.2 11.2 10.8 13.6 8 14.6 C5.2 13.6 2.8 11.2 2.8 8 V3.2 Z" stroke="#0b0b0d" stroke-width="1.3" stroke-linejoin="round" fill="none"/>
-                        <path d="M5.4 8 L7.2 9.8 L10.6 6.4" stroke="#0b0b0d" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </span>
-                <span>Kirmy</span><span class="tag">privacy-first browser concept</span>
-            </a>
-        </header>
-
-        <section class="hero">
-            <span class="eyebrow"><span class="dot"></span>Concept · work in progress</span>
-            <h1>The browser that works for <span class="accent">you.</span></h1>
-            <p>Kirmy is a browser concept built on one idea: the browser should work for <em>you</em>,
-            not for the people trying to follow you around the web. Trackers blocked by default,
-            a fingerprint that doesn't give you away, and search that doesn't log who you are.</p>
-        </section>
-
-        <div class="note">
-            <strong>Note:</strong> Kirmy is a design concept — a sketch of what a browser
-            built around privacy could look like. It is not a downloadable product (yet).
-        </div>
-
-        <h2>What it does</h2>
-        <div class="cards">
-            <div class="card">
-                <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m4.9 4.9 14.2 14.2"/></svg></div>
-                <h3>Tracker blocking</h3>
-                <p>Block all known trackers and third-party cookies, out of the box.</p>
-            </div>
-            <div class="card">
-                <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4Z"/></svg></div>
-                <h3>Fingerprint shield</h3>
-                <p>Randomise canvas and audio signatures so sites can't fingerprint your device.</p>
-            </div>
-            <div class="card">
-                <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
-                <h3>Tor routing</h3>
-                <p>Route private windows through Tor — send a tab through 3 hops with one click.</p>
-            </div>
-            <div class="card">
-                <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
-                <h3>Decentralised search</h3>
-                <p>Search through <code>search.kirmy</code> without being profiled.</p>
-            </div>
-            <div class="card">
-                <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="10" rx="5"/><circle cx="17" cy="12" r="3"/></svg></div>
-                <h3>Strict mode</h3>
-                <p>One switch that turns every protection up to maximum.</p>
-            </div>
-        </div>
-
-        <h2>What Kirmy blocks</h2>
-        <p>A built-in privacy report shows exactly what was stopped — trackers stopped
-        cold, grouped by what they were trying to do:</p>
-        <table>
-            <thead><tr><th scope="col">Category</th><th scope="col">Examples</th></tr></thead>
-            <tbody>
-            <tr><td>Ad networks</td><td>doubleclick.net</td></tr>
-            <tr><td>Analytics</td><td>googletagmanager, segment.io, amplitude.com</td></tr>
-            <tr><td>Fingerprinters</td><td>hotjar.com</td></tr>
-            <tr><td>Social embeds</td><td>facebook.net</td></tr>
-            </tbody>
-        </table>
-
-        <h2>Project</h2>
-        <p>Kirmy is open and a work in progress. Follow along here:</p>
-        <ul>
-            <li><a href="https://github.com/kirmy-browser" target="_blank" rel="noopener">github.com/kirmy-browser</a></li>
-        </ul>
-
-        <div class="footer">
-            &copy; 2026 Kirmy &middot; a privacy-first browser concept
-        </div>
-
-    </div>
-</body>
+  </head>
+  <body>
+    <header>
+      <div class="site-name">kirmy.org</div>
+      <h1>good morning visitors, this is my beautiful website</h1>
+      <div class="meta">essays about whatever caught my eye</div>
+    </header>
+    <article>
+      <p>
+        kirmy.org is a small, simple corner of the web for essays about
+        bicycles, bread, clouds, and other things that interest me.
+      </p>
+      <p>
+        there is no feed to optimize and no algorithm deciding whether this
+        paragraph deserves engagement. you arrived here because you chose a
+        link. an astonishingly functional system.
+      </p>
+      <p>
+        every page below is plain html — no scripts, no tracking, no unnecessary
+        machinery.
+      </p>
+      <h2 id="random-pages">random pages</h2>
+      <p>11 text/html routes are included in this verified build.</p>
+      <ul class="directory">
+        <li>
+          <a href="bicycles.html">Bicycles</a> — bicycles are suspiciously
+          efficient
+        </li>
+        <li>
+          <a href="bread.html">Bread</a> — bread is controlled microbial
+          inflation
+        </li>
+        <li>
+          <a href="clouds.html">Clouds</a> — clouds are less fluffy than
+          advertised
+        </li>
+        <li>
+          <a href="dinosaurs.html">Dinosaurs</a> — dinosaurs never really left
+        </li>
+        <li><a href="lighthouses.html">Lighthouses</a> — lighthouses</li>
+        <li><a href="maps.html">Maps</a> — maps are organized lies</li>
+        <li><a href="radio.html">Radio</a> — radio is invisible shouting</li>
+        <li><a href="typewriters.html">Typewriters</a> — typewriters</li>
+        <li><a href="vinyl-records.html">Vinyl records</a> — vinyl records</li>
+        <li>
+          <a href="volcanoes.html">Volcanoes</a> — volcanoes are earth leaking
+        </li>
+        <li>
+          <a href="godisntreal.html">Why God Isn't Real</a> — a longer essay
+        </li>
+      </ul>
+    </article>
+    <footer>kirmy.org · last updated 2026-08-22</footer>
+  </body>
 </html>
