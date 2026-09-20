@@ -1,0 +1,86 @@
+* { box-sizing: border-box; }
+
+body {
+  max-width: 640px;
+  margin: 48px auto;
+  padding: 0 20px 72px;
+  background: #fff;
+  color: #111;
+  font: 17px/1.65 Georgia, "Times New Roman", serif;
+}
+
+header { margin-bottom: 28px; }
+
+.site-name {
+  font: bold 13px/1.2 Arial, sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 1.12;
+  font-weight: normal;
+  margin: 10px 0 8px;
+}
+
+h2 {
+  font-size: 1.05rem;
+  font-weight: bold;
+  margin: 2.1em 0 0.45em;
+}
+
+.meta, footer {
+  color: #666;
+  font: 13px/1.5 Arial, sans-serif;
+}
+
+p { margin: 0 0 0.9em; }
+
+a { color: #0645ad; }
+a:visited { color: #551a8b; }
+
+.projects {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.projects li {
+  padding: 1rem 0;
+  border-top: 1px solid #ddd;
+}
+
+.projects li:last-child { border-bottom: 1px solid #ddd; }
+
+.projects strong {
+  display: block;
+  font: bold 16px/1.3 Arial, sans-serif;
+  margin-bottom: 0.2em;
+}
+
+.projects span {
+  display: block;
+  color: #333;
+  margin-bottom: 0.35em;
+}
+
+.projects .links {
+  font: 13px/1.5 Arial, sans-serif;
+}
+
+.projects .links a { margin-right: 0.85em; }
+
+footer {
+  margin-top: 42px;
+  padding-top: 18px;
+  border-top: 1px solid #ddd;
+  font-size: 12px;
+}
+
+.skip {
+  position: absolute;
+  left: 12px;
+  top: -80px;
+}
+.skip:focus { top: 12px; }

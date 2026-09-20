@@ -1,5 +1,4 @@
 Contact: mailto:ckazros@wearegays.net
-Contact: https://discord.gg/fPG29xv7EA
-Expires: 2027-05-18T20:00:00Z
+Expires: 2027-09-20T00:00:00Z
 Preferred-Languages: en
 Canonical: https://kirmy.org/.well-known/security.txt
