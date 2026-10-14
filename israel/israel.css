@@ -1,0 +1,155 @@
+/* /israel — parody notice page (flat, full-page).
+   Shared by kirmy.org, kozzyx.org, owaua.com and wearegays.net.
+
+   Deliberately plain: no gradients, no glows, no animation, system fonts only.
+   The parody framing is part of the design and is not decorative — the banner,
+   the seal (פרודיה / PARODY) and the disclosure box all state it. */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --blue: #0038b8;
+  --blue-soft: #eef2fd;
+  --ink: #12161c;
+  --muted: #5b6675;
+  --line: #dde3ec;
+  --red: #b81f2c;
+  --red-soft: #fdecee;
+}
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    "Arial Hebrew", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* --- parody banner --- */
+.bar {
+  background: var(--red);
+  color: #fff;
+  text-align: center;
+  font-weight: 700;
+  font-size: clamp(.76rem, 2.2vw, .95rem);
+  padding: .62rem 1rem;
+}
+
+/* --- full-height centred stage --- */
+.page {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: clamp(1.5rem, 5vw, 3.5rem) 1.25rem;
+}
+
+.inner {
+  width: 100%;
+  max-width: 620px;
+  text-align: center;
+}
+
+.emblem {
+  display: block;
+  width: clamp(116px, 30vw, 176px);
+  height: auto;
+  margin: 0 auto clamp(1rem, 3vw, 1.6rem);
+  color: var(--blue);
+}
+
+.kicker {
+  margin: 0 0 .55rem;
+  color: var(--muted);
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+}
+
+h1 {
+  margin: 0 0 .7rem;
+  font-size: clamp(1.6rem, 6vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -.01em;
+  color: var(--blue);
+  text-wrap: balance;
+}
+
+.sub {
+  direction: ltr;
+  unicode-bidi: isolate;
+  margin: 0 0 clamp(1.4rem, 4vw, 2rem);
+  color: var(--muted);
+  font-size: clamp(.85rem, 2.4vw, 1rem);
+}
+
+/* --- disclosure --- */
+.parody {
+  margin: 0 0 1.5rem;
+  padding: 1rem 1.1rem;
+  text-align: right;
+  border: 1px solid var(--red);
+  border-radius: 8px;
+  background: var(--red-soft);
+}
+
+.parody strong { color: var(--red); }
+.parody p { margin: 0; }
+
+.en {
+  display: block;
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: right;
+  margin: .6rem 0 0;
+  color: #7d4046;
+  font-size: .9rem;
+}
+
+/* --- back link --- */
+.back { margin: 0; }
+
+.back a {
+  display: inline-block;
+  padding: .62rem 1.2rem;
+  border: 1px solid var(--blue);
+  border-radius: 999px;
+  color: var(--blue);
+  font-weight: 700;
+  text-decoration: none;
+}
+.back a:hover { background: var(--blue-soft); }
+
+/* --- footer --- */
+.foot {
+  border-top: 1px solid var(--line);
+  padding: .9rem 1.25rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: .78rem;
+}
+
+/* --- misc --- */
+code {
+  direction: ltr;
+  unicode-bidi: embed;
+  font-size: .88em;
+  padding: .05rem .32rem;
+  border-radius: 4px;
+  background: rgba(0, 56, 184, .1);
+  color: var(--blue);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
