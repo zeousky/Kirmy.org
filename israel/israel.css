@@ -33,8 +33,32 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
+/* --- Israeli flag background ---
+   White field, two blue stripes, and the Star of David drawn as an outline
+   (as on the actual flag, not filled). The star is held back in opacity so the
+   notice text above it stays legible. */
+.flag {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-color: #fff;
+  background-image:
+    url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20200%20200'%3E%3Cg%20fill='none'%20stroke='%230038b8'%20stroke-width='7'%3E%3Cpath%20d='M100%2022%20L167.5%20139%20L32.5%20139%20Z'/%3E%3Cpath%20d='M100%20178%20L32.5%2061%20L167.5%2061%20Z'/%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(to bottom,
+      #fff 0 6%,
+      var(--blue) 6% 18%,
+      #fff 18% 82%,
+      var(--blue) 82% 94%,
+      #fff 94% 100%);
+  background-repeat: no-repeat, no-repeat;
+  background-position: center center, center center;
+  background-size: min(94vh, 72vw) auto, 100% 100%;
+}
+
 /* --- parody banner --- */
 .bar {
+  position: relative;
+  z-index: 1;
   background: var(--red);
   color: #fff;
   text-align: center;
@@ -49,12 +73,21 @@ body {
   display: grid;
   place-items: center;
   padding: clamp(1.5rem, 5vw, 3.5rem) 1.25rem;
+  position: relative;
+  z-index: 1;
 }
 
 .inner {
   width: 100%;
-  max-width: 620px;
+  max-width: 580px;
   text-align: center;
+  padding: clamp(1.5rem, 4vw, 2.25rem) clamp(1.1rem, 3.5vw, 1.9rem);
+  background: rgba(255, 255, 255, .84);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  border: 1px solid rgba(0, 56, 184, .35);
+  border-radius: 12px;
+  box-shadow: 0 6px 30px rgba(12, 30, 70, .12);
 }
 
 .emblem {
@@ -130,6 +163,8 @@ h1 {
 
 /* --- footer --- */
 .foot {
+  position: relative;
+  z-index: 1;
   border-top: 1px solid var(--line);
   padding: .9rem 1.25rem;
   text-align: center;
