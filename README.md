@@ -8,4 +8,4 @@ Plain HTML and CSS. No framework, no tracker.
 python3 -m http.server 8080
 ```
 
-Push `main` to publish via GitHub Pages. See [`AGENTS.md`](AGENTS.md).
+Push `main` to publish through Railway. See [`AGENTS.md`](AGENTS.md).
