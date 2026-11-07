@@ -1,9 +1,5 @@
 # kirmy.org
 
-The live GitHub Pages site is published from the public repository
-[`zeousky/kirmy-org-pages`](https://github.com/zeousky/kirmy-org-pages), which
-contains only the public site files and deployment workflow. This repository
-remains private and is not the Pages deployment source.
+The live GitHub Pages site is published from `zeousky/kirmy-org-pages`. This repository contains a separate source snapshot and does not deploy the site.
 
-Edit the live site in `zeousky/kirmy-org-pages`, commit and push to `main`, and
-check `https://kirmy.org/` after the Pages workflow finishes.
+Make live-site changes in the Pages repository and verify its deployment after pushing.
